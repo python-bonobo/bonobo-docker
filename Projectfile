@@ -1,0 +1,37 @@
+# bonobo-docker (see github.com/python-edgy/project)
+
+name = 'bonobo-docker'
+description = 'Docker extension for Bonobo'
+license = 'Apache License, Version 2.0'
+
+url = 'https://bonobo-project.org/'
+download_url = 'https://github.com/python-bonobo/bonobo-docker/tarball/{version}'
+
+author = 'Romain Dorgueil'
+author_email = 'romain@dorgueil.net'
+
+enable_features = {
+    'make',
+    'sphinx',
+    'pytest',
+    'git',
+    'pylint',
+    'python',
+    'yapf',
+}
+
+install_requires = [
+    'bonobo',
+    'docker',
+]
+
+extras_require = {
+    'dev': [
+        'bonobo[dev]',
+    ],
+}
+
+@listen('edgy.project.feature.make.on_generate', priority=10)
+def on_make_generate_docker_targets(event):
+    event.makefile['SPHINX_SOURCEDIR'] = 'docs'
+

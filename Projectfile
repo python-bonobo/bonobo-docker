@@ -1,6 +1,6 @@
 # bonobo-docker (see github.com/python-edgy/project)
 
-name = 'bonobo-docker'
+name = 'bonobo_docker'
 description = 'Docker extension for Bonobo'
 license = 'Apache License, Version 2.0'
 
@@ -31,6 +31,11 @@ extras_require = {
     ],
 }
 
+entry_points = {
+    'bonobo.commands': [
+        'runc = bonobo_docker.commands.runc:register',
+    ]
+}
 @listen('edgy.project.feature.make.on_generate', priority=10)
 def on_make_generate_docker_targets(event):
     event.makefile['SPHINX_SOURCEDIR'] = 'docs'

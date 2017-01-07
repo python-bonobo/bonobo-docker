@@ -1,6 +1,6 @@
 # bonobo-docker (see github.com/python-edgy/project)
 
-name = 'bonobo-docker'
+name = 'bonobo_docker'
 description = 'Docker extension for Bonobo'
 license = 'Apache License, Version 2.0'
 

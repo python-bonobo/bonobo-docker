@@ -1,7 +1,7 @@
 # This file has been auto-generated.
 # All changes will be lost, see Projectfile.
 #
-# Updated at 2017-01-10 23:19:14.968037
+# Updated at 2017-01-10 23:59:09.012313
 
 PYTHON ?= $(shell which python)
 PYTHON_BASENAME ?= $(shell basename $(PYTHON))
@@ -19,7 +19,7 @@ SPHINX_BUILDDIR ?= $(SPHINX_SOURCEDIR)/_build
 YAPF ?= $(VIRTUAL_ENV)/bin/yapf
 YAPF_OPTIONS ?= -rip
 
-.PHONY: $(SPHINX_SOURCEDIR) clean format install install-dev lint test
+.PHONY: $(SPHINX_SOURCEDIR) clean docker-bash docker-release format install install-dev lint test
 
 # Installs the local project dependencies.
 install: $(VIRTUAL_ENV)
@@ -55,3 +55,9 @@ $(SPHINX_SOURCEDIR): install-dev
 
 format: install-dev
 	$(YAPF) $(YAPF_OPTIONS) .
+
+docker-release:
+	cd images; make all
+
+docker-bash:
+	cd images; make bash

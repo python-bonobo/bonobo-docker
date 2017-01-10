@@ -36,7 +36,13 @@ entry_points = {
         'runc = bonobo_docker.commands.runc:register',
     ]
 }
+
 @listen('edgy.project.feature.make.on_generate', priority=10)
-def on_make_generate_docker_targets(event):
-    event.makefile['SPHINX_SOURCEDIR'] = 'docs'
+def on_make_generate(event):
+    event.makefile.add_target('docker-release', '''
+        cd images; make all
+    ''', phony=True)
+    event.makefile.add_target('docker-bash', '''
+        cd images; make bash
+    ''', phony=True)
 

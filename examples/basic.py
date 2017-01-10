@@ -1,4 +1,4 @@
-from bonobo import Graph, tee, run, ThreadPoolExecutorStrategy
+from bonobo import Graph, tee
 import pprint
 
 
@@ -12,13 +12,12 @@ def transform(x: str):
     return x.upper() + ' transformed'
 
 
-exports = {
-    'default': Graph(
-        extract,
-        transform,
-        tee(pprint.pprint),
-    )
-}
+graph = Graph(
+    extract,
+    transform,
+    tee(pprint.pprint),
+)
 
-executor = ThreadPoolExecutorStrategy()
-executor.execute(exports['default'])
+if __name__ == '__main__':
+    from bonobo import console_run
+    console_run(graph)

@@ -15,8 +15,8 @@ def execute(file):
     :return:
     """
     container = client.containers.run(
-        "bonobo-runtime:3.6",
-        command="bin/python -m bonobo.commands run src/script.py",
+        "pybb/bonobo:3.6",
+        command="bin/bonobo run src/script.py",
         user='bonobo',
         detach=True,
         volumes={os.path.join(os.getcwd(), file.name): {

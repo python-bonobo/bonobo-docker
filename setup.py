@@ -40,7 +40,9 @@ setup(
     packages=find_packages(exclude=['ez_setup', 'example', 'test']),
     include_package_data=True,
     extras_require={'dev': ['bonobo[dev]']},
-    entry_points={'bonobo.commands': ['runc = bonobo_docker.commands.runc:register']},
+    entry_points={
+        'bonobo.commands': ['runc = bonobo_docker.commands.runc:register']
+    },
     url='https://bonobo-project.org/',
-    download_url='https://github.com/python-bonobo/bonobo-docker/tarball/{version}'.format(version=version),
-)
+    download_url='https://github.com/python-bonobo/bonobo-docker/tarball/{version}'.
+    format(version=version), )

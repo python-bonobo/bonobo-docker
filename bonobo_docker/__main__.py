@@ -25,7 +25,10 @@ class BaseCommand:
 
 class BuildCommand(BaseCommand):
     def init(self, parser):
-        parser.add_argument('--version', '-v', )
+        parser.add_argument(
+            '--version',
+            '-v',
+        )
         parser.add_argument('--push', '-p', action='store_true')
         parser.add_argument('--no-cache', action='store_true')
 
@@ -60,10 +63,8 @@ class BuildCommand(BaseCommand):
 
         run_docker(
             'build',
-            *(['--no-cache'] if no_cache else []),
-            '--build-arg BONOBO_VERSION={}'.format(version),
-            *('-t {}:{}'.format(settings.IMAGE, tag) for tag in tags),
-            images.__path__[0]
+            *(['--no-cache'] if no_cache else []), '--build-arg BONOBO_VERSION={}'.format(version),
+            *('-t {}:{}'.format(settings.IMAGE, tag) for tag in tags), images.__path__[0]
         )
 
         if push:
@@ -71,9 +72,7 @@ class BuildCommand(BaseCommand):
                 run_docker('push {}:{}'.format(settings.IMAGE, tag))
 
 
-COMMANDS = {
-    'build': BuildCommand
-}
+COMMANDS = {'build': BuildCommand}
 
 
 def entrypoint(args=None):

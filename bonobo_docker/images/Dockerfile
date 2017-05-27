@@ -10,10 +10,11 @@ RUN apt-get -y update \
 ENV TINI_VERSION v0.14.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /sbin/tini
 
-RUN echo "bonobo (== ${BONOBO_VERSION})" > /home/bonobo/requirements.txt \
+RUN chmod +x /sbin/tini \
  && cd /home/bonobo \
- && chmod +x /sbin/tini \
+ && echo "bonobo (== ${BONOBO_VERSION})" > requirements.txt \
  && sudo -u bonobo virtualenv . \
+ && sudo -u bonobo mkdir -p src \
  && sudo -u bonobo bin/pip install -r requirements.txt \
  && (echo 'export PS1="🐵  \w "'; echo '. /home/bonobo/bin/activate'; echo 'alias l="ls -lsah"') >> /home/bonobo/.bashrc
 

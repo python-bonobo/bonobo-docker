@@ -1,5 +1,4 @@
 for pkg in `find src -maxdepth 2 -name setup.py -printf '%h\n'`; do
-    echo "Installing editable package $pkg..."
     ~/bin/pip install -qe $pkg
 done
 

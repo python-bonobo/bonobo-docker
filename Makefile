@@ -1,7 +1,7 @@
 # This file has been auto-generated.
 # All changes will be lost, see Projectfile.
 #
-# Updated at 2017-05-27 16:12:37.725314
+# Updated at 2017-05-27 16:31:13.231722
 
 PACKAGE ?= bonobo_docker
 PYTHON ?= $(shell which python)
@@ -20,9 +20,10 @@ SPHINX_SOURCEDIR ?= docs
 SPHINX_BUILDDIR ?= $(SPHINX_SOURCEDIR)/_build
 YAPF ?= $(PYTHON_DIRNAME)/yapf
 YAPF_OPTIONS ?= -rip
+BONOBO_VERSION ?= $(shell bonobo version -qq)
 VERSION ?= $(shell git describe 2>/dev/null || echo dev)
 
-.PHONY: $(SPHINX_SOURCEDIR) clean format install install-dev test
+.PHONY: $(SPHINX_SOURCEDIR) clean format images install install-dev test
 
 # Installs the local project dependencies.
 install:
@@ -48,3 +49,7 @@ $(SPHINX_SOURCEDIR): install-dev
 
 format: install-dev
 	$(YAPF) $(YAPF_OPTIONS) .
+
+# Build an pushes docker images.
+images: install
+	$(PYTHON) -m $(PACKAGE) build --version $(BONOBO_VERSION) --push

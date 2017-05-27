@@ -1,7 +1,7 @@
 import os
 
 import bonobo
-from bonobo.util.packages import bonobo_packages
+from bonobo.util.pkgs import bonobo_packages
 from bonobo_docker import settings
 from bonobo_docker.utils import run_docker
 

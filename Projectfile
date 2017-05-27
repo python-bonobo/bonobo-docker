@@ -1,48 +1,30 @@
-# bonobo-docker (see github.com/python-edgy/project)
+# Project configuration for "bonobo_docker".
+from edgy.project import listen, require
 
-name = 'bonobo_docker'
-description = 'Docker extension for Bonobo'
-license = 'Apache License, Version 2.0'
+pytest = require('pytest')
+python = require('python')
+sphinx = require('sphinx')
+yapf = require('yapf')
 
-url = 'https://bonobo-project.org/'
-download_url = 'https://github.com/python-bonobo/bonobo-docker/tarball/{version}'
-
-author = 'Romain Dorgueil'
-author_email = 'romain@dorgueil.net'
-
-enable_features = {
-    'make',
-    'sphinx',
-    'pytest',
-    'git',
-    'pylint',
-    'python',
-    'yapf',
-}
-
-install_requires = [
-    'bonobo',
-    'docker',
-]
-
-extras_require = {
-    'dev': [
-        'bonobo[dev]',
-    ],
-}
-
-entry_points = {
-    'bonobo.commands': [
+python.setup(
+    name='bonobo_docker',
+    description='Docker extension for Bonobo',
+    license='Apache License, Version 2.0',
+    url='https://bonobo-project.org/',
+    download_url='https://github.com/python-bonobo/bonobo-docker/tarball/{version}',
+    author='Romain Dorgueil',
+    author_email='romain@dorgueil.net',
+    entry_points={'bonobo.commands': [
         'runc = bonobo_docker.commands.runc:register',
-    ]
-}
+        'shell = bonobo_docker.commands.shell:register',
+    ]},
+)
 
-@listen('edgy.project.feature.make.on_generate', priority=10)
-def on_make_generate(event):
-    event.makefile.add_target('docker-release', '''
-        cd images; make all
-    ''', phony=True)
-    event.makefile.add_target('docker-bash', '''
-        cd images; make bash
-    ''', phony=True)
+python.add_requirements(
+    'bonobo >=0.3,<0.4',
+    'docker >=2.3,<2.4',
+    'requests >=2.16,<3.0',
+    dev=['bonobo[dev] >=0.3,<0.4'],
+)
 
+# vi:set ft=python:

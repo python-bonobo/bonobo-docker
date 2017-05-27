@@ -17,11 +17,7 @@ def get_volumes():
 
 def get_volumes_args():
     for hostpath, volumespec in get_volumes().items():
-        yield '-v {}:{}{}'.format(
-            hostpath,
-            volumespec['bind'],
-            ':ro' if volumespec.get('mode') == 'ro' else ''
-        )
+        yield '-v {}:{}{}'.format(hostpath, volumespec['bind'], ':ro' if volumespec.get('mode') == 'ro' else '')
 
 
 def execute(clear=False):

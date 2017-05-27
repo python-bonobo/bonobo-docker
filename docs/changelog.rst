@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v.0.2.1
+:::::::
+
+* Minor tuning so it actually works.
+
 v.0.2.0
 :::::::
 

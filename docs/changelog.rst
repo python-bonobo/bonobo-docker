@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v.0.2.2
+:::::::
+
+* Trying to fix release process.
+
 v.0.2.1
 :::::::
 

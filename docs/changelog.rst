@@ -1,6 +1,12 @@
 Changelog
 =========
 
+v.0.2.3
+:::::::
+
+* Adds --pristine option to bonobo term, to ask for no automatic volume mounts (except for ~/.cache)
+* Rename shell command to term, as shell may mean repl later for bonobo core.
+
 v.0.2.2
 :::::::
 

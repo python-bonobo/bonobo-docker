@@ -2,7 +2,7 @@ import os
 
 import bonobo
 from bonobo.commands.run import register_generic_run_arguments
-from bonobo_docker.commands.shell import get_volumes
+from bonobo_docker.volumes import get_volumes
 from bonobo_docker.services import client
 
 
@@ -11,7 +11,7 @@ def register(parser):
     return execute
 
 
-def execute(filename, module, quiet=False, verbose=False):
+def execute(filename, module):
     from bonobo_docker import settings
 
     target = os.path.realpath(os.path.join(os.getcwd(), filename))

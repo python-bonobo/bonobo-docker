@@ -1,7 +1,7 @@
 # This file has been auto-generated.
 # All changes will be lost, see Projectfile.
 #
-# Updated at 2017-05-27 16:31:13.231722
+# Updated at 2017-05-28 16:23:43.755860
 
 PACKAGE ?= bonobo_docker
 PYTHON ?= $(shell which python)
@@ -49,6 +49,7 @@ $(SPHINX_SOURCEDIR): install-dev
 
 format: install-dev
 	$(YAPF) $(YAPF_OPTIONS) .
+	$(YAPF) $(YAPF_OPTIONS) Projectfile
 
 # Build an pushes docker images.
 images: install

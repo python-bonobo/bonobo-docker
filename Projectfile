@@ -10,13 +10,13 @@ python.setup(
     name='bonobo_docker',
     description='Docker extension for Bonobo',
     license='Apache License, Version 2.0',
-    url='https://www.bonobo-project.org/',
+    url='https://www.bonobo-project.org/with/docker',
     download_url='https://github.com/python-bonobo/bonobo-docker/tarball/{version}',
     author='Romain Dorgueil',
     author_email='romain@dorgueil.net',
     entry_points={'bonobo.commands': [
         'runc = bonobo_docker.commands.runc:register',
-        'shell = bonobo_docker.commands.shell:register',
+        'term = bonobo_docker.commands.term:register',
     ]},
 )
 
@@ -27,12 +27,13 @@ python.add_requirements(
     dev=['bonobo[dev] >=0.3,<0.4'],
 )
 
+
 @listen('edgy.project.feature.make.on_generate')
 def on_make_generate(event):
     event.makefile['BONOBO_VERSION'] = '$(shell bonobo version -qq)'
     event.makefile.add_target('images', '''
         $(PYTHON) -m $(PACKAGE) build --version $(BONOBO_VERSION) --push
-    ''', deps=('install', ), phony=True, doc='''
+    ''', deps=('install',), phony=True, doc='''
         Build an pushes docker images.
     ''')
 

@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v.0.2.4
+:::::::
+
+* [bug] invalid import path fixed.
+
 v.0.2.3
 :::::::
 

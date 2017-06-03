@@ -28,6 +28,6 @@ six==1.10.0
 snowballstemmer==1.2.1
 sphinx==1.6.2
 sphinxcontrib-websupport==1.0.1
-stevedore==1.21.0
+stevedore==1.22.0
 typing==3.6.1
 urllib3==1.21.1

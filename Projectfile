@@ -14,11 +14,9 @@ python.setup(
     download_url='https://github.com/python-bonobo/bonobo-docker/tarball/{version}',
     author='Romain Dorgueil',
     author_email='romain@dorgueil.net',
-    entry_points={
-        'bonobo.commands': [
-            'runc = bonobo_docker.commands.runc:register',
-        ]
-    },
+    entry_points={'bonobo.commands': [
+        'runc = bonobo_docker.commands.runc:register',
+    ]},
 )
 
 python.add_requirements(

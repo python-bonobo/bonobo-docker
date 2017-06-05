@@ -1,6 +1,12 @@
 Changelog
 =========
 
+v.0.2.5
+:::::::
+
+* Normalize docker usage and cli options.
+* Preload bonobo module in containers REPL.
+
 v.0.2.4
 :::::::
 

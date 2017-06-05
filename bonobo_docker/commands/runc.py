@@ -22,10 +22,10 @@ def execute(filename, module, volumes=None, shell=False, with_local_packages=Fal
         target = os.path.realpath(os.path.join(os.getcwd(), filename))
 
         if os.path.isdir(target):
-            site_volumes += (target + ':/home/bonobo/app',)
+            site_volumes += (target + ':/home/bonobo/app', )
             command = "bin/bonobo run --install app"
         elif os.path.isfile(target):
-            site_volumes += (os.path.dirname(target) + ':/home/bonobo/app',)
+            site_volumes += (os.path.dirname(target) + ':/home/bonobo/app', )
             command = "bin/bonobo run app/" + os.path.basename(target)
         else:
             raise IOError(

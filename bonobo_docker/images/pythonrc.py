@@ -1,5 +1,6 @@
 # ~/.pythonrc
 
+
 def _enable_syntax_completion():
     try:
         import readline

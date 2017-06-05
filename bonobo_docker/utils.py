@@ -7,7 +7,7 @@ from bonobo_docker.logging import logger
 
 
 def run_docker(*args):
-    cmd = ' '.join(('docker',) + args)
+    cmd = ' '.join(('docker', ) + args)
     logger.info(cmd)
     return os.system(cmd)
 

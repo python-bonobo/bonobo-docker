@@ -32,7 +32,7 @@ def execute(filename, module, volumes=None, shell=False, with_local_packages=Fal
                 'File does not exist, or is of unsupported type (only directories and regular files are supported).'
             )
     elif module:
-        raise NotImplementedError('Not yet implemented.')
+        raise NotImplementedError('Executing a module within a docker container is not yet implemented.')
     elif shell:
         command = '/bin/bash'
     else:

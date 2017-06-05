@@ -58,10 +58,7 @@ setup(
             'pytest-cov (>= 2.5, < 3.0)', 'sphinx (>= 1.6, < 2.0)'
         ]
     },
-    entry_points={
-        'bonobo.commands':
-        ['runc = bonobo_docker.commands.runc:register', 'term = bonobo_docker.commands.term:register']
-    },
+    entry_points={'bonobo.commands': ['runc = bonobo_docker.commands.runc:register']},
     url='https://www.bonobo-project.org/with/docker',
     download_url='https://github.com/python-bonobo/bonobo-docker/tarball/{version}'.format(version=version),
 )

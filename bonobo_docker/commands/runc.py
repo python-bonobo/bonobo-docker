@@ -1,29 +1,31 @@
 import os
 
-import bonobo
 from bonobo.commands.run import register_generic_run_arguments
-from bonobo_docker.volumes import get_volumes
-from bonobo_docker.services import client
 
 
 def register(parser):
-    register_generic_run_arguments(parser)
+    register_generic_run_arguments(parser, required=False)
+    parser.add_argument('--with-local-packages', '-L', action='store_true')
+    parser.add_argument('--volume', '-v', action='append', dest='volumes')
+    parser.add_argument('--shell', action='store_true')
     return execute
 
 
-def execute(filename, module):
-    from bonobo_docker import settings
+def execute(filename, module, volumes=None, shell=False, with_local_packages=False):
+    from bonobo_docker.utils import run_docker, get_volumes_args, get_image
 
-    target = os.path.realpath(os.path.join(os.getcwd(), filename))
+    site_volumes = get_volumes_args(with_local_packages=with_local_packages)
 
-    volumes = get_volumes()
+    if shell:
+        command = "bash"
+    elif filename:
+        target = os.path.realpath(os.path.join(os.getcwd(), filename))
 
-    if filename:
         if os.path.isdir(target):
-            volumes[target] = {'bind': '/home/bonobo/app', 'mode': 'ro'}
+            site_volumes += (target + ':/home/bonobo/app',)
             command = "bin/bonobo run --install app"
         elif os.path.isfile(target):
-            volumes[os.path.dirname(target)] = {'bind': '/home/bonobo/app', 'mode': 'ro'}
+            site_volumes += (os.path.dirname(target) + ':/home/bonobo/app',)
             command = "bin/bonobo run app/" + os.path.basename(target)
         else:
             raise IOError(
@@ -31,15 +33,15 @@ def execute(filename, module):
             )
     elif module:
         raise NotImplementedError('Not yet implemented.')
+    elif shell:
+        command = '/bin/bash'
     else:
-        raise RuntimeError('UNEXPECTED: argparse should not allow this.')
+        command = '/home/bonobo/bin/python'
 
-    container = client.containers.run(
-        '{}:{}'.format(settings.IMAGE, bonobo.__version__),
-        command=command,
-        user='bonobo',
-        detach=True,
-        volumes=volumes
+    run_docker(
+        'run -it --rm',
+        *site_volumes,
+        *(['-v {}'.format(v) for v in volumes] if volumes else []),
+        get_image(),
+        command,
     )
-    for line in container.logs(stream=True):
-        print(line.decode('utf-8'), end='')

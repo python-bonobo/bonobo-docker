@@ -1,7 +1,10 @@
-for pkg in `find src -maxdepth 2 -name setup.py -printf '%h\n'`; do
-    ~/bin/pip install -qe $pkg
+#!/bin/bash
+
+# Install vendors.
+for vendor in `find src -maxdepth 2 -name setup.py | xargs -n1 dirname 2>/dev/null`; do
+    echo "Installing $vendor ..."
+    pip install -e $vendor
 done
 
-# Unknwon argument, assume that user wants to run his own process,
-# for example a `bash` shell to explore this image
+# Delegate to user command.
 exec "$@"

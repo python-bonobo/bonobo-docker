@@ -20,6 +20,10 @@ RUN chmod +x /sbin/tini \
 
 ADD ./entrypoint.sh /usr/local/bin/
 
+USER bonobo
 WORKDIR /home/bonobo
+
+ENV PYTHONSTARTUP /home/bonobo/.pythonrc
+ADD ./pythonrc.py ${PYTHONSTARTUP}
 
 ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/entrypoint.sh"]

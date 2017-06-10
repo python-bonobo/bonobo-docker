@@ -1,6 +1,11 @@
 Changelog
 =========
 
+v.0.2.6
+:::::::
+
+* Weekly dependency update.
+
 v.0.2.5
 :::::::
 

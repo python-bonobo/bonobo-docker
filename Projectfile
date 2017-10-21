@@ -1,5 +1,6 @@
 # Project configuration for "bonobo_docker".
-from edgy.project import listen, require
+
+from medikit import listen, require
 
 pytest = require('pytest')
 python = require('python')
@@ -19,7 +20,7 @@ python.setup(
     ]},
 )
 
-bonobo_version = '>=0.5,<0.6'
+bonobo_version = '>=0.5.1'
 python.add_requirements(
     'bonobo ' + bonobo_version,
     'docker >=2.3,<2.4',

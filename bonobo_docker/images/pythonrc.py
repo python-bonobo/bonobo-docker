@@ -13,7 +13,7 @@ def _enable_syntax_completion():
 
 def _enable_shell_colors():
     import sys
-    from colorama import Fore, Style
+    from colorama import Fore
     sys.ps1 = Fore.LIGHTWHITE_EX + '🐵 >' + Fore.RESET + ' '
     sys.ps2 = Fore.BLACK + '..' + Fore.LIGHTBLACK_EX + '.' + Fore.RESET + ' '
 

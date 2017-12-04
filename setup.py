@@ -55,7 +55,7 @@ setup(
     extras_require={
         'dev': [
             'bonobo (>= 0.5.1)', 'coverage (>= 4.4, < 5.0)', 'pytest (>= 3.1, < 4.0)', 'pytest-cov (>= 2.5, < 3.0)',
-            'sphinx (>= 1.6, < 2.0)'
+            'sphinx (>= 1.6, < 2.0)', 'yapf'
         ]
     },
     entry_points={'bonobo.commands': ['runc = bonobo_docker.commands.runc:register']},

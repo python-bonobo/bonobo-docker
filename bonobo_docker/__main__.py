@@ -89,8 +89,7 @@ class BuildCommand(BaseCommand):
         tags = list(sorted(tags))
 
         docker_command = [
-            'build',
-            *(['--no-cache'] if no_cache else []), '--build-arg BONOBO_VERSION={}'.format(version),
+            'build', *(['--no-cache'] if no_cache else []), '--build-arg BONOBO_VERSION={}'.format(version),
             *('-t {}:{}'.format(settings.IMAGE, tag) for tag in tags), images.__path__[0]
         ]
 

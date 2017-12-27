@@ -40,11 +40,12 @@ def on_make_generate(event):
         '''
         $(PYTHON) -m $(PACKAGE) build --version $(BONOBO_VERSION) --push
     ''',
-        deps=('install',),
+        deps=('install', ),
         phony=True,
         doc='''
         Build an pushes docker images.
     '''
     )
+
 
 # vi:set ft=python:

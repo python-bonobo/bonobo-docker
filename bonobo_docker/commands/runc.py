@@ -12,6 +12,7 @@ class GraphReference:
         self.file = file
         self.mod = mod
 
+
 class RuncCommand(BaseGraphCommand):
     install = False
     handler = staticmethod(bonobo_docker.runc)
@@ -44,10 +45,10 @@ class RuncCommand(BaseGraphCommand):
             target = os.path.realpath(os.path.join(os.getcwd(), filename))
 
             if os.path.isdir(target):
-                site_volumes += ('-v ' + target + ':/home/bonobo/app',)
+                site_volumes += ('-v ' + target + ':/home/bonobo/app', )
                 command = "bin/bonobo run --install app"
             elif os.path.isfile(target):
-                site_volumes += ('-v ' + os.path.dirname(target) + ':/home/bonobo/app',)
+                site_volumes += ('-v ' + os.path.dirname(target) + ':/home/bonobo/app', )
                 command = "bin/bonobo run app/" + os.path.basename(target)
             else:
                 raise IOError(

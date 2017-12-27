@@ -8,8 +8,17 @@ api = ApiHelper(__all__=__all__)
 
 
 @api.register_graph
-def runc(graph, *, plugins=None, services=None, strategy=None, environ=None, shell=False, volumes=None,
-         with_local_packages=False):
+def runc(
+    graph,
+    *,
+    plugins=None,
+    services=None,
+    strategy=None,
+    environ=None,
+    shell=False,
+    volumes=None,
+    with_local_packages=False
+):
     from bonobo_docker.utils import run_docker, get_volumes_args, get_image
 
     site_volumes = get_volumes_args(with_local_packages=with_local_packages)
@@ -20,10 +29,10 @@ def runc(graph, *, plugins=None, services=None, strategy=None, environ=None, she
         target = os.path.realpath(os.path.join(os.getcwd(), graph.file))
 
         if os.path.isdir(target):
-            site_volumes += ('-v ' + target + ':/home/bonobo/app',)
+            site_volumes += ('-v ' + target + ':/home/bonobo/app', )
             command = "bin/bonobo run --install app"
         elif os.path.isfile(target):
-            site_volumes += ('-v ' + os.path.dirname(target) + ':/home/bonobo/app',)
+            site_volumes += ('-v ' + os.path.dirname(target) + ':/home/bonobo/app', )
             command = "bin/bonobo run --install app/" + os.path.basename(target)
         else:
             raise IOError(

@@ -20,11 +20,11 @@ python.setup(
     ]},
 )
 
-bonobo_version = '>=0.5.1,<0.6'
+bonobo_version = '~= 0.6.0a2'
 python.add_requirements(
     'bonobo ' + bonobo_version,
-    'docker >=2.3,<2.4',
-    'requests >=2.16,<3.0',
+    'docker ~=2.7',
+    'requests ~=2.16,<3.0',
     dev=[
         'bonobo[dev] ' + bonobo_version,
     ],

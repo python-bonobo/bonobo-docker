@@ -16,15 +16,16 @@ python.setup(
     author='Romain Dorgueil',
     author_email='romain@dorgueil.net',
     entry_points={'bonobo.commands': [
-        'runc = bonobo_docker.commands.runc:register',
+        'runc = bonobo_docker.commands.runc:RuncCommand',
     ]},
 )
 
-bonobo_version = '~= 0.6.0a2'
+bonobo_version = '~= 0.6.0a4'
 python.add_requirements(
     'bonobo ' + bonobo_version,
     'docker ~=2.7',
-    'requests ~=2.16,<3.0',
+    'requests ~=2.16',
+    'semantic_version ~=2.6',
     dev=[
         'bonobo[dev] ' + bonobo_version,
     ],
@@ -39,12 +40,11 @@ def on_make_generate(event):
         '''
         $(PYTHON) -m $(PACKAGE) build --version $(BONOBO_VERSION) --push
     ''',
-        deps=('install', ),
+        deps=('install',),
         phony=True,
         doc='''
         Build an pushes docker images.
     '''
     )
-
 
 # vi:set ft=python:

@@ -1,9 +1,8 @@
-from functools import partial
-
-import phonenumbers
-from faker import Factory
-
 import bonobo
+import phonenumbers
+
+from faker import Factory
+from functools import partial
 
 fake = Factory.create('fr_FR')
 
@@ -21,9 +20,7 @@ def get_graph():
     return graph
 
 
-graph = get_graph()
-
 if __name__ == '__main__':
-    from bonobo.commands.run import get_default_services
-
-    bonobo.run(graph, services=get_default_services(__file__))
+    parser = bonobo.get_argument_parser()
+    with bonobo.parse_args(parser) as options:
+        bonobo.run(get_graph(**options))

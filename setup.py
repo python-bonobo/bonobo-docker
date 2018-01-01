@@ -51,10 +51,10 @@ setup(
     classifiers=classifiers,
     packages=find_packages(exclude=['ez_setup', 'example', 'test']),
     include_package_data=True,
-    install_requires=['bonobo (~= 0.6.0a4)', 'docker (~= 2.7)', 'requests (~= 2.16)', 'semantic_version (~= 2.6)'],
+    install_requires=['bonobo (~= 0.6.0)', 'docker (~= 2.7)', 'requests (~= 2.16)', 'semantic_version (~= 2.6)'],
     extras_require={
         'dev': [
-            'bonobo (~= 0.6.0a4)', 'coverage (>= 4.4, < 5.0)', 'pytest (>= 3.1, < 4.0)', 'pytest-cov (>= 2.5, < 3.0)',
+            'bonobo (~= 0.6.0)', 'coverage (>= 4.4, < 5.0)', 'pytest (>= 3.1, < 4.0)', 'pytest-cov (>= 2.5, < 3.0)',
             'yapf'
         ]
     },

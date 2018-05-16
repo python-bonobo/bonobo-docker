@@ -26,7 +26,7 @@
 /.cache
 /.coverage
 /.idea
-/.medikit-pipeline
+/.medikit
 /.release
 /build/
 /coverage.xml

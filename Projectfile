@@ -4,11 +4,11 @@ from medikit import listen, require
 
 pytest = require('pytest')
 python = require('python')
-sphinx = require('sphinx')
 yapf = require('yapf')
 
 python.setup(
     name='bonobo_docker',
+    python_requires='>=3.5',
     description='Docker extension for Bonobo',
     license='Apache License, Version 2.0',
     url='https://www.bonobo-project.org/with/docker',
@@ -16,15 +16,16 @@ python.setup(
     author='Romain Dorgueil',
     author_email='romain@dorgueil.net',
     entry_points={'bonobo.commands': [
-        'runc = bonobo_docker.commands.runc:register',
+        'runc = bonobo_docker.commands.runc:RuncCommand',
     ]},
 )
 
-bonobo_version = '>=0.5.1'
+bonobo_version = '~= 0.6.0'
 python.add_requirements(
     'bonobo ' + bonobo_version,
-    'docker >=2.3,<2.4',
-    'requests >=2.16,<3.0',
+    'docker ~=2.7',
+    'requests ~=2.16',
+    'semantic_version ~=2.6',
     dev=[
         'bonobo[dev] ' + bonobo_version,
     ],

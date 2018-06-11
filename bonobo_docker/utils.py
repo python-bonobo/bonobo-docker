@@ -1,15 +1,16 @@
 import os
 
 import bonobo
-from bonobo.util.iterators import tuplize
+from bonobo.util.collections import cast
 from bonobo_docker import settings
 from bonobo_docker.logging import logger
 
 
-def run_docker(*args):
+def run_docker(*args, dry_run=False):
     cmd = ' '.join(('docker', ) + args)
-    logger.info(cmd)
-    return os.system(cmd)
+    logger.info(('[DRY] ' if dry_run else '') + cmd)
+    if not dry_run:
+        return os.system(cmd)
 
 
 def get_image():
@@ -27,7 +28,7 @@ def get_volumes(*, with_local_packages=False):
     return volumes
 
 
-@tuplize
+@cast(tuple)
 def get_volumes_args(*, with_local_packages=False):
     for hostpath, volumespec in get_volumes(with_local_packages=with_local_packages).items():
         yield '-v {}:{}{}'.format(hostpath, volumespec['bind'], ':ro' if volumespec.get('mode') == 'ro' else '')
